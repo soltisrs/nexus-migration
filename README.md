@@ -18,7 +18,6 @@ Nexus tracked client engagements and deliverables in a single flat Smartsheet �
 ```
 nexus_migration/
 ├── .env                        # API credentials (never committed)
-├── .gitignore
 ├── README.md
 ├── requirements.txt
 ├── nexus_smartsheet_export.csv # Source data from Smartsheet
