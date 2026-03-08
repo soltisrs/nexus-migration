@@ -97,11 +97,6 @@ def migrate_data():
         else:
             monday_eng_id = engagement_id_map[eng_id]
 
-        # Skip deliverables whose parent engagement failed to create
-        if monday_eng_id is None:
-            print(f"  SKIPPING deliverable '{row['deliverable_name'].strip()}' - parent engagement failed")
-            continue
-
         # -- STEP 2: CREATE DELIVERABLE -----------------------------------
         deliv_name = row["deliverable_name"].strip()
         print(f"  └─ Adding deliverable: {deliv_name}")
