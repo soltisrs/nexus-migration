@@ -154,7 +154,6 @@ def run_validation():
                 )
 
             # Flag deliverables missing key fields entirely on Monday
-            # Derek: "if something's missing data I'd want to know about it"
             missing = []
             if not (m.get(DELIV_ASSIGNEE_COL) or "").strip():
                 missing.append("assignee")
@@ -170,9 +169,6 @@ def run_validation():
                 )
 
             # Flag deliverables with no linked engagement
-            # Derek: "are there any deliverables floating around without an engagement?"
-            # board_relation columns return empty string via standard API fields so
-            # linked_deliv is fetched separately using a typed GraphQL query in utils.py
             if d_name not in linked_deliv:
                 issues["Orphaned Deliverables (No Engagement Linked)"].append(
                     f"'{d_name}' | Should be linked to: '{e_name}'"
@@ -194,7 +190,7 @@ def run_validation():
     print(f"  Monday Engagements : {len(monday_eng)}")
     print(f"  Monday Deliverables: {len(monday_deliv)}")
 
-    # Priya: "If I have 27 deliverables in Smartsheet I should have 27 in monday.com"
+    # Count comparison between Smartsheet and Monday.com
     if len(csv_eng_names) != len(monday_eng):
         print(f"\n  !! Engagement count mismatch  : {len(csv_eng_names)} CSV vs {len(monday_eng)} Monday")
     if len(rows) != len(monday_deliv):
